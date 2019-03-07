@@ -1,0 +1,151 @@
+﻿@page "/employeerecords"
+@inherits EmployeeDataModel
+
+<h1>Employees</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#add-edit-employee" onclick="@AddEmployee">
+                <i class="fa fa-user-plus"></i>
+                Add Employee
+            </button>
+        </div>
+        <div class="input-group col-md-4 offset-md-5">
+            <input type="text" class="form-control" placeholder="Search employee" bind="@SearchString" />
+            <div class="input-group-append">
+                <button class="btn btn-info" onclick="@SearchEmploye">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+@if (_listEmployee == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Designation</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in _listEmployee)
+            {
+                <tr>
+                    <td>@employee.EmployeeId</td>
+                    <td>@employee.EmployeeName</td>
+                    <td>@employee.Gender</td>
+                    <td>@employee.Designation</td>
+                    <td>@employee.CityName</td>
+                    <td>
+                        <button class="btn btn-outline-dark" data-toggle="modal" data-target="#add-edit-employee" onclick="@(async () => await EditEmployee(employee.EmployeeId))">
+                            <i class="fa fa-pencil-square-o"></i>
+                            Edit
+                        </button>
+                        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#delete-employee" onclick="@(async () => await DeleteConfirm(employee.EmployeeId))">
+                            <i class="fa fa-trash-o"></i>
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div class="modal fade" id="add-edit-employee">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">@ModalTitle</h3>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">X</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">Name</label>
+                        <input class="form-control" bind="@_employee.EmployeeName" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Gender</label>
+                        <select class="form-control" bind="@_employee.Gender">
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Designation</label>
+                        <input class="form-control" bind="@_employee.Designation" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">City</label>
+                        <select class="form-control" bind="@_employee.CityName">
+                            <option value="">Select city</option>
+                            @foreach (var city in _listCities)
+                            {
+                                <option value="@city.CityName">@city.CityName</option>
+                            }
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-block btn-success" onclick="@(async () => await CreateEmployee())" data-dismiss="modal">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="delete-employee">
+    <div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Confirm delete</h3>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <tr>
+                            <td>Name</td>
+                            <td>@_employee.EmployeeName</td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>@_employee.Gender</td>
+                        </tr>
+                        <tr>
+                            <td>Designation</td>
+                            <td>@_employee.Designation</td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td>@_employee.CityName</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" data-dismiss="modal" onclick="@(async () => await DeleteEmployee(_employee.EmployeeId))">
+                        Delete
+                    </button>
+                    <button data-dismiss="modal" class="btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

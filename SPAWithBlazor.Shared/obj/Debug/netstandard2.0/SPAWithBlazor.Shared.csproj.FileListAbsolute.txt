@@ -1,0 +1,9 @@
+C:\Visual Studio\SPAWithBlazor\SPAWithBlazor.Shared\bin\Debug\netstandard2.0\SPAWithBlazor.Shared.deps.json
+C:\Visual Studio\SPAWithBlazor\SPAWithBlazor.Shared\bin\Debug\netstandard2.0\SPAWithBlazor.Shared.dll
+C:\Visual Studio\SPAWithBlazor\SPAWithBlazor.Shared\bin\Debug\netstandard2.0\SPAWithBlazor.Shared.pdb
+C:\Visual Studio\SPAWithBlazor\SPAWithBlazor.Shared\obj\Debug\netstandard2.0\SPAWithBlazor.Shared.csproj.CoreCompileInputs.cache
+C:\Visual Studio\SPAWithBlazor\SPAWithBlazor.Shared\obj\Debug\netstandard2.0\SPAWithBlazor.Shared.AssemblyInfoInputs.cache
+C:\Visual Studio\SPAWithBlazor\SPAWithBlazor.Shared\obj\Debug\netstandard2.0\SPAWithBlazor.Shared.AssemblyInfo.cs
+C:\Visual Studio\SPAWithBlazor\SPAWithBlazor.Shared\obj\Debug\netstandard2.0\SPAWithBlazor.Shared.dll
+C:\Visual Studio\SPAWithBlazor\SPAWithBlazor.Shared\obj\Debug\netstandard2.0\SPAWithBlazor.Shared.pdb
+C:\Visual Studio\SPAWithBlazor\SPAWithBlazor.Shared\obj\Debug\netstandard2.0\SPAWithBlazor.Shared.csprojAssemblyReference.cache
